@@ -1,10 +1,13 @@
 package br.usjt.usjt_ccp3anmca_jpa_hibernate.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,18 +20,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Usuario {
-
 	@OneToOne
 	@JoinColumn(name="association table")
 	private Perfil perfil;
+	@ManyToMany
+	private List <Conteudo> conteudos;
 
-	public Perfil getPerfil() {
-		return perfil;
-	}
 
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
 
 	@Id
 	@GeneratedValue
@@ -40,6 +38,13 @@ public class Usuario {
 	@Column(nullable = true, length = 100)
 	private String email;
 
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
 	public Long getId() {
 		return id;
 	}

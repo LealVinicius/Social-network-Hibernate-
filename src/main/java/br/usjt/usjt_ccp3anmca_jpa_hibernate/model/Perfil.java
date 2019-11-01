@@ -6,10 +6,21 @@ import javax.persistence.*;
 @Table(name = "tb_perfil")
 
 public class Perfil {
+	@OneToOne (mappedBy = "perfil")
+	private Usuario usuario;
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String descricao;
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 
 	public Long getId() {
 		return id;
